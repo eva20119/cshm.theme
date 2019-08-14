@@ -86,5 +86,17 @@ portal_url = portal.absolute_url()
     </div>
   </div>
 
+<!-- 次選單 / 報名作業 開班程序 -->
+  <div class="row" tal:condition="python:view.view.__name__ in ['register_detail']">
+    <div class="col-md-12">
+      <span>報名作業/開班程序 功能列表:</span>
+      <a target="_blank" href="${context/absolute_url}/@@students_list">名單</a> |
+      <a target="_blank" href="${context/absolute_url}/@@class_scheduling">排課</a> |
+      <a traget='_blank' href="${context/absolute_url}/@@add_signature" target='_blank'>新增簽呈</a> |
+      <a traget='_blank' href="${context/absolute_url}/@@create_official_view" target='_blank'>新增公文</a>
+      <hr>
+    </div>
+  </div>
+
 
 </div>

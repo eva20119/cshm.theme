@@ -28,12 +28,6 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
 <hr>
 <h3>${python:context.getParentNode().title} / ${context/title}</h3>
 
-<a target="_blank" href="${context/absolute_url}/@@students_list">名單</a> |
-<a target="_blank" href="${context/absolute_url}/@@class_scheduling">排課</a>|
-<a traget='_blank' href="${context/absolute_url}/add_signature" target='_blank'>新增簽呈</a>|
-<a traget='_blank' href="${context/absolute_url}/@@create_official_view" target='_blank'>新增公文</a>|
-
-<hr>
 <?python
    timeDict = {'notYat': '時間未定', 'inDay': '日間', 'inEvening': '夜間', 'inWeekend': '假日', 'inWeekendEvening': '周末夜間', 'complex': '混合時段', 'phone': '電話'}
    statusDict = {'willStart': '確定開課', 'fullCanAlt': '額滿候補', 'planed': '預定開課', 'registerFirst': '請先報名', 'altFull': '報名額滿'}
