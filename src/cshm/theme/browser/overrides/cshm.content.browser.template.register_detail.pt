@@ -38,20 +38,23 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
   <button id='cancel_edit' style='background: red;border-color: red'>取消</button>
 
   <input type='hidden' value='1' name='update'/>
-  <table border="1" cellpadding="0" cellspacing="0" width="850px">
-   <tbody>
+<div class="table-responsive">
+  <table class="table">
+   <thead class="thead-dark">
     <tr height="30" class="tr-title">
-     <td colspan="6">課程基本資料(<span id='enableEdit' style='color: black;cursor:pointer'>編輯</span>)</td>
+     <th colspan="6">課程基本資料(<span id='enableEdit' style='color: black;cursor:pointer'>編輯</span>)</th>
     </tr>
+   </thead>
+   <tbody>
     <tr>
-     <td>
+     <td class="td-title">
        <b style='color: red'>期    別</b>
      </td>
      <td>
        <p>${context/title}</p>
        <input type='text' name='title' class='edit' value='${context/title}'>
      </td>
-     <td>
+     <td class="td-title">
        <b>課程狀態</b>
      </td>
      <td>
@@ -60,7 +63,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
          <option tal:repeat="status statusDict" value='${status}' tal:attributes="selected python: context.classStatus == status">${python: statusDict[status]}</option>
        </select>
      </td>
-     <td>
+     <td class="td-title">
        <b style='color: red'>報名截止日期</b>
      </td>
      <td>
@@ -69,7 +72,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
      </td>
     </tr>
     <tr height="30">
-     <td width="120">
+     <td width="120" class="td-title">
       <b>時　　段</b>
      </td>
      <td width="160">
@@ -85,12 +88,12 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
        </select>
      </td>
 
-     <td width="120"><b>開訓日期</b></td>
+     <td width="120" class="td-title"><b>開訓日期</b></td>
      <td width="160">
        <p>${context/courseStart}</p>
        <input type='date' value='${context/courseStart}' name='courseStart' class='edit'>
      </td>
-     <td width="120">
+     <td width="120" class="td-title">
       <b>
        結訓日期
       </b>
@@ -101,14 +104,14 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
      </td>
     </tr>
     <tr height="30">
-     <td>
+     <td class="td-title">
        <b>上課時間</b>
      </td>
      <td>
        <p>${context/classTime}</p>
        <input  type='text' class='edit' name='classTime' value='${context/classTime}' placeholder='例:0900-1800'>
      </td>
-     <td>
+     <td class="td-title">
       <b style='color: red'>
        外辦單位
       </b>
@@ -120,7 +123,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
          <option tal:repeat="center centerDict" value='${python: centerDict[center]}'>${center}</option>
        </select>
      </td>
-     <td>
+     <td class="td-title">
       <b>
        訓練地點
       </b>
@@ -128,7 +131,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
      <td colspan="3">${python: context.trainingCenter.to_object.address if context.trainingCenter else ''}</td>
     </tr>
     <tr height="30">
-     <td>
+     <td class="td-title">
       <b>
        專班
       </b>
@@ -137,7 +140,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
        <p>${context/specialCourse}</p>
        <input  type='text' class='edit' value="${context/specialCourse}" name='specialCourse'/>
      </td>
-     <td>
+     <td class="td-title">
       <b>
        承辦人員
       </b>
@@ -150,7 +153,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
                  tal:attributes="selected python: context.undertaker == allUser[user]">${user}</option>
        </select>
      </td>
-     <td>
+     <td class="td-title">
       <b>
        專職輔導員
       </b>
@@ -170,7 +173,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
      </td>
     </tr>
     <tr height="30">
-     <td>
+     <td class="td-title">
       <b style='color: red'>
        人數上限
       </b>
@@ -179,7 +182,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
        <p>${context/quota}</p>
        <input class='edit' value="${context/quota}" name='quota' type='number'/>
      </td>
-     <td>
+     <td class="td-title">
       <b>
        職訓中心
        <br/>
@@ -190,7 +193,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
       <p>${context/trainingCenterAgent}</p>
       <input  type='text' class='edit' name='trainingCenterAgent' value='${context/trainingCenterAgent}'/>
      </td>
-     <td>
+     <td class="td-title">
       <b>
        教室
       </b>
@@ -205,7 +208,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
     <tr>
     </tr>
     <tr height="50">
-     <td>
+     <td class="td-title">
       <b>
        發證文號
       </b>
@@ -217,7 +220,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
 　       ●核備日期／文號：<input class='edit' name='docSN' value='${context/docSN}' type='date' style='width: 20%'/>
       </p>
      </td>
-     <td>
+     <td class="td-title">
        <b>課程費用</b>
      </td>
      <td>
@@ -226,19 +229,19 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
      </td>
     </tr>
     <tr height="30">
-     <td>
+     <td class="td-title">
       <b>
        上課人數
       </b>
      </td>
      <td>${view/regAmount}</td>
-     <td>
+     <td class="td-title">
       <b>
        結訓人數
       </b>
      </td>
      <td>${view/finishAmount}</td>
-     <td>
+     <td class="td-title">
       <b>
        發證日期
       </b>
@@ -255,7 +258,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
      </td>
     </tr>
     <tr height='30'>
-     <td>
+     <td class="td-title">
       <b>聯絡資訊</b>
      </td>
      <td>
@@ -263,7 +266,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
        <textarea value='${context/contact}' class='edit' name='contact'>${context/contact}</textarea>
      </td>
 
-     <td>
+     <td class="td-title">
       <b>繳交資料</b>
      </td>
      <td>
@@ -271,7 +274,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
        <textarea value='${context/prepareInfo}' class='edit' name='prepareInfo'>${context/prepareInfo}</textarea>
      </td>
 
-     <td>
+     <td class="td-title">
       <b>上課詳細時間</b>
      </td>
      <td>
@@ -281,21 +284,21 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
     </tr>
 
     <tr>
-     <td>
+     <td class="td-title">
       <b>優惠方案</b>
      </td>
      <td>
        <p>${context/discountProgram}</p>
        <textarea value='${context/discountProgram}' class='edit' name='discountProgram'>${context/discountProgram}</textarea>
      </td>
-     <td>
+     <td class="td-title">
       <b>折扣開始日期</b>
      </td>
      <td>
        <p>${context/discountStart}</p>
        <input type='date' class='edit' name='discountStart' value='${context/discountStart}' />
      </td>
-     <td>
+     <td class="td-title">
       <b>折扣結束日期</b>
      </td>
      <td>
@@ -306,17 +309,17 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
     </tr>
 
     <tr>
-     <td><b>起重機具機型</b></td>
+     <td class="td-title"><b>起重機具機型</b></td>
      <td>
        <p>${context/craneType}</p>
        <input  type='text' class='edit' name='craneType' value='${context/craneType}'>
      </td>
-     <td><b>認    證</b></td>
+     <td class="td-title"><b>認    證</b></td>
      <td>
        <p>${context/qualification}</p>
        <input  type='text' class='edit' name='qualification' value='${context/qualification}'>
      </td>
-     <td><b>報班日期</b></td>
+     <td class="td-title"><b>報班日期</b></td>
      <td>
        <p>${context/submitClassDate}</p>
        <input type='date' class='edit' name='submitClassDate' value='${context/submitClassDate}'>
@@ -324,21 +327,21 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
     </tr>
 
     <tr>
-      <td>
+      <td class="td-title">
         <b>回訓細節</b>
       </td>
       <td>
         <p>${context/reTrainingDetail}</p>
         <textarea class='edit' name='reTrainingDetail'>${context/reTrainingDetail}</textarea>
       </td>
-      <td>  
+      <td class="td-title">  
         <b>課程介紹</b>
       </td>
       <td>
         <p>${context/courseIntro}</p>
         <textarea class='edit' name='courseIntro'>${context/courseIntro}</textarea>
       </td>
-      <td>  
+      <td class="td-title">  
         <b>適用範圍</b>
       </td>
       <td>
@@ -347,7 +350,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
       </td>
     </tr>
     <tr>
-      <td>
+      <td class="td-title">
         <b>考試方式</b>
       </td>
       <td>
@@ -355,27 +358,27 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
         <textarea class='edit' name='testMethod'>${context/testMethod}</textarea>
       </td>
     </tr>
-    <tr height="30" class="tr-title">
+    <tr height="30">
      <td colspan="6">
       辦理狀態
      </td>
     </tr>
     <tr height="30">
-     <td>
+     <td class="td-title">
       <b>學員資料寄件</b>
      </td>
-     <td>
+     <td class="td-title">
        <p>${context/studDataSendDate}</p>
        <input type='date' value='${context/studDataSendDate}' class='edit' name='studDataSendDate'/>
      </td>
-     <td>
+     <td class="td-title">
       <b>結報寄件</b>
      </td>
      <td>
        <p>${context/finishCourseSendDate}</p>
        <input type='date' value='${context/finishCourseSendDate}' class='edit' name='finishCourseSendDate'/>
      </td>
-     <td>
+     <td class="td-title">
       <b>
        收件日期
       </b>
@@ -386,7 +389,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
      </td>
     </tr>
     <tr height="30">
-     <td>
+     <td class="td-title">
       <b>
        報班發證
        <br/>
@@ -397,7 +400,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
        <p>${context/giveLicenseStatus}</p>
        <input type='text'  value='${context/giveLicenseStatus}' class='edit' name='giveLicenseStatus'/>
      </td>
-     <td>
+     <td class="td-title">
       <b>
        查核註記
       </b>
@@ -408,7 +411,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
      </td>
     </tr>
     <tr height="30">
-     <td>
+     <td class="td-title">
       <b>
        預支款請領
       </b>
@@ -417,7 +420,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
        <p>${context/preFee}</p>
        <input  type='text' value='${context/preFee}' class='edit' name='preFee'/>
      </td>
-     <td>
+     <td class="td-title">
       <b>
        收支明細
       </b>
@@ -426,7 +429,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
        <p>${context/feeDetail}</p>
        <input  type='text' value='${context/feeDetail}' class='edit' name='feeDetail'/>
      </td>
-     <td>
+     <td class="td-title">
       <b>
        管理費
       </b>
@@ -437,7 +440,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
      </td>
     </tr>
     <tr height="30">
-     <td>
+     <td class="td-title">
       <b>
        結報狀態
       </b>
@@ -446,7 +449,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
        <p>${context/finishCourseStatus}</p>
        <input type='text'  value='${context/finishCourseStatus}' class='edit' name='finishCourseStatus'/>
      </td>
-     <td>
+     <td class="td-title">
       <b>
        出納註記
       </b>
@@ -457,7 +460,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
      </td>
     </tr>
     <tr height="30">
-     <td>
+     <td class="td-title">
       <b>
        備　　註
       </b>
@@ -467,7 +470,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
        <input type='text'  value='${context/statusNote}' class='edit' name='statusNote'/>
      </td>
     </tr>
-    <tr height="30" class="tr-title">
+    <tr height="30">
       <td colspan="6">
         教  材
       </td>
@@ -485,13 +488,19 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
     </tr>
    </tbody>
   </table>
+</div>
 </form>
-<table>
+
+<div class="table-responsive">
+<table class="table">
+  <thead class="thead-dark">
     <tr height="30" class="tr-title">
-     <td colspan='4'>
+     <th colspan='4'>
       收　文
-     </td>
+     </th>
     </tr>
+  </thead>
+  <tbody>
     <tr height="50">
        <th>文號</th>
        <th style='width: 60%'>主旨</th>
@@ -506,11 +515,15 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
         <a href="${python: receive['editUrl']}" target='_blank'>編輯</a>
       </td>
     </tr>
+  </tbody>
+  <thead class="thead-dark">
     <tr height="30" class="tr-title">
-     <td colspan='4'>
+     <th colspan='4'>
       發　文
-     </td>
+     </th>
     </tr>
+  </thead>
+  <tbody>
     <tr height="50">
        <th>文號</th>
        <th style='width: 60%'>主旨</th>
@@ -525,34 +538,43 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
         <a href="${python: send['editUrl']}" target='_blank'>編輯</a>
       </td>
     </tr>
+  </tbody>
 </table>
-<table tal:define="signature view/getSignature">
-  <tr height="30" class="tr-title">
-   <td colspan="6">
-    簽呈
-   </td>
-  </tr>
-  <tr height="40">
-    <th>簽呈日期</th>
-    <th>簽呈分類</th>
-    <th>速別</th>
-    <th>主旨</th>
-    <th>狀態</th>
-    <th></th>
-  </tr>
-  <tr tal:repeat="item python: signature">
-    <tal:def2 define='obj python: dict(item)'>
-      <td>${python: obj['date']}</td>
-      <td>${python: obj['category']}</td>
-      <td>${python: obj['type']}</td>
-      <td>${python: obj['title']}</td>
-      <td>${python: obj['status']}</td>
-      <td>
-        <a href="${view/context/absolute_url}/modify_signature?id=${python: obj['id']}" target='_blank'>編輯</a>
-      </td>
-   </tal:def2>
-  </tr>
+</div>
+
+<div class="table-responsive">
+<table class="table" tal:define="signature view/getSignature">
+  <thead class="thead-dark">
+    <tr height="30" class="tr-title">
+      <th colspan="6">
+        簽呈
+      </th>
+    </tr>
+    <tr height="40">
+      <th>簽呈日期</th>
+      <th>簽呈分類</th>
+      <th>速別</th>
+      <th>主旨</th>
+      <th>狀態</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr tal:repeat="item python: signature">
+      <tal:def2 define='obj python: dict(item)'>
+        <td>${python: obj['date']}</td>
+        <td>${python: obj['category']}</td>
+        <td>${python: obj['type']}</td>
+        <td>${python: obj['title']}</td>
+        <td>${python: obj['status']}</td>
+        <td>
+          <a href="${view/context/absolute_url}/modify_signature?id=${python: obj['id']}" target='_blank'>編輯</a>
+        </td>
+     </tal:def2>
+    </tr>
+  </tbody>
 </table>
+</div>
 
 <script>
 $(function(){

@@ -1,9 +1,25 @@
 body {
   font-size: 14px;
+  background: #fbf579;
 }
 
 .table .thead-dark th {
-    color: #fff;
-    background-color: var(--success);
-    border-color: #dee8f3;
+  color: #fff;
+  background-color: var(--success);
+  border-color: #dee8f3;
+}
+
+.td-title {
+  background-color: #85c1ea;
+}
+
+#global_statusmessage {
+  width: 100%;
+
+}
+#global_statusmessage .envor-msg-info {
+  width: 100%;
+  color: #fff;
+  background-color: #005995;
+  padding: 10px;
 }

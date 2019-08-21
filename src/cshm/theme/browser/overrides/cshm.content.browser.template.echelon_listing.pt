@@ -15,147 +15,105 @@
 <?python
 from plone import api
 ?>
-  <table>
+<div class="table-responsive">
+<table class="table table-striped">
+  <thead class="thead-dark">
    <tr class="tr-title">
-    <td>
-     <p>
+    <th>
       檢視
-     </p>
-    </td>
-    <td>
-     <p>
+    </th>
+    <th>
       期別
-     </p>
-    </td>
-    <td>
-     <p>
+    </th>
+    <th>
       辦事處
-     </p>
-    </td>
-    <td>
-     <p>
+    </th>
+    <th>
       時段
-     </p>
-    </td>
-    <td>
-     <p>
+    </th>
+    <th>
       開始日期
-     </p>
-    </td>
-    <td>
-     <p>
+    </th>
+    <th>
       結束日期
-     </p>
-    </td>
-    <td>
-     <p>
+    </th>
+    <th>
       地點
-     </p>
-    </td>
-    <td>
-     <p>
+    </th>
+    <th>
       上課人數
-     </p>
-    </td>
-    <td>
-     <p>
+    </th>
+    <th>
       結訓人數
-     </p>
-    </td>
-    <td>
-     <p>
+    </th>
+    <th>
       發證日期
-     </p>
-    </td>
-    <td>
-     <p>
+    </th>
+    <th>
       承辦人
-     </p>
-    </td>
-    <td>
-     <p>
+    </th>
+    <th>
       外辦承辦人
-     </p>
-    </td>
-    <td>
-     <p>
+    </th>
+    <th>
       管理費
-     </p>
-    </td>
-    <td>
+    </th>
+    <th>
 課程發佈狀態
-    </td>
+    </th>
    </tr>
+  </thead>
+
+  <tbody>
    <tr class="tr-body" tal:repeat="item view/childNodes">
     <td style="white-space:nowrap;">
 <a href="${item/absolute_url}/register_detail">檢視</a> 
     </td>
     <td>
-     <p>
 ${item/title}
-     </p>
     </td>
     <td>
-     <p>
 <tal:cond condition="item/trainingCenter">
   ${item/trainingCenter/to_object/simpleTitle}
 </tal:cond>
-     </p>
     </td>
     <td>
-     <p i18n:translate>
+     <span i18n:translate>
 ${item/duringTime}
-     </p>
+     </span>
     </td>
     <td>
-     <p>
 <tal:cond condition="item/courseStart">
   ${python:item.courseStart.strftime('%Y/%m/%d')}
 </tal:cond>
-     </p>
     </td>
     <td>
-<p><tal:cond condition="item/courseEnd">
+<tal:cond condition="item/courseEnd">
   ${python:item.courseEnd.strftime('%Y/%m/%d')}
 </tal:cond>
-     </p>
     </td>
     <td>
-     <p>
 <tal:cond condition="item/trainingCenter"> 
   ${item/trainingCenter/to_object/address}
 </tal:cond>
-     </p>
     </td>
     <td>
-     <p>
 ${python:view.getRegCount(uid=item.UID())}
-     </p>
     </td>
     <td>
-     <p>
 ${python:view.getPassCount(uid=item.UID())}
-     </p>
     </td>
     <td>
-     <p>
 ${item/licenseDate}
-     </p>
     </td>
     <td>
-     <p>
 ${python:item.undertaker}
-     </p>
     </td>
     <td>
-     <p>
 ${item/trainingCenterAgent}
-     </p>
     </td>
     <td>
-     <p>
 ${item/manageFee}
-     </p>
     </td>
     <td>
 <a href="javascript:void(0)" class="state" data-state="published" data-uid="${item/UID}"
@@ -165,7 +123,9 @@ ${item/manageFee}
 
     </td>
    </tr>
-  </table>
+  </tbody>
+</table>
+</div>
 
 <script>
 $(document).ready(function(){
