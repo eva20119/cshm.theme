@@ -16,7 +16,7 @@ from datetime import datetime
 now = datetime.now().strftime('%Y-%m-%d')
 ?>
 <style>
-textarea{
+/*textarea{
     min-height: unset;
     height: unset;
 }
@@ -40,7 +40,7 @@ a{
 .sample_list a{
     float: right;
 }
-
+*/
 </style>
 
 <div class='col-md-3 signature_sample'>
@@ -68,10 +68,15 @@ a{
 
 
 <form action='add_signature' method='post' class='col-md-9'>
-<table>
+
+<div class="table-responsive">
+<table class="table">
+  <thead class="thead-dark">
     <tr>
-        <th colspan="2" style='text-align: center;padding: 16px 0;font-size: 20px;border: 1px solid #999'>新增簽呈</th>
+        <th colspan="2">新增簽呈</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>簽呈分類</td>
         <td>
@@ -179,7 +184,9 @@ a{
           <button>送出</button>
         </td>
     </tr>
+  </tbody>
 </table>
+</div>
 </form>
 <div style='text-align:center;margin: 20px' class='col-md-12'>
   <button id='back' onclick="location.href='${portal_url}/signature_view'">回上一頁</button>

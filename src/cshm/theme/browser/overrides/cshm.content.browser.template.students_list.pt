@@ -30,7 +30,9 @@
 <span style="background:#fff;border:1px solid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>&nbsp;正取&nbsp;&nbsp;</span>
 <span style="background:#8c8;border:1px solid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>&nbsp;待補課&nbsp;&nbsp;</span>
 <span style="background:#faa;border:1px solid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>&nbsp;保留&nbsp;&nbsp;</span>
+<br><br>
 
+<div class="table-responsive">
 <table border="1" id="admit-list" cellspacing="0" cellpadding="0" class="table">
   <thead class="thead-dark">
     <tr>
@@ -114,24 +116,27 @@
    </tal:tr>
 
   </tbody>
-</table><br>
+</table>
+</div>
+<br>
 <a id="update-seatNo" class="context">更新座位及受訓狀態</a>
 
 <hr>
 <h4>備取學員</h4>
 <a id="all-trans-to-admit" href="javascript:void(0)">全部轉為正取(只能進行一次)</a>
-<table border="1" id="waiting-list" cellspacing="0" cellpadding="0">
-  <thead>
+<div class="table-responsive">
+<table border="1" id="waiting-list" cellspacing="0" cellpadding="0" class="table">
+  <thead class="thead-dark">
     <tr class="tr-title">
-      <td>備取</td>
-      <td>姓名</td>
-      <td>聯絡電話</td>
-      <td>承辦人</td>
-      <td>發送mail</td>
-      <td>繳費狀況</td>
-      <td>新增聯絡紀錄</td>
-      <td>查看</td>
-      <td>轉正取</td>
+      <th>備取</th>
+      <th>姓名</th>
+      <th>聯絡電話</th>
+      <th>承辦人</th>
+      <th>發送mail</th>
+      <th>繳費狀況</th>
+      <th>新增聯絡紀錄</th>
+      <th>查看</th>
+      <th>轉正取</th>
     </tr>
   </thead>
   <tbody>
@@ -159,6 +164,7 @@
     </tr>
   </tbody>
 </table>
+</div>
 <script>
 var app = new Vue({
     el: '#content-core',
