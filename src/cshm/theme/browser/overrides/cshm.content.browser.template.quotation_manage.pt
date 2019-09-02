@@ -22,7 +22,7 @@ from plone import api
 portal = api.portal.get()
 ?>
 
-<a href="${portal/absolute_url}/@@add_signature" style="float:right" target="_blank">建立報價簽呈</a>
+<a href="${portal/absolute_url}/@@add_signature?id=${view/request/form/id}" style="float:right" target="_blank">建立報價簽呈</a>
 <span style="float:right"> | </span>
 <a href="${portal/absolute_url}/@@create_quotation?id=${view/request/form/id}" style="float:right" target="_blank">建立報價單</a>
 
@@ -279,7 +279,7 @@ portal = api.portal.get()
 
   </table>
 <br>
-<input type="submit" name="submit">
+<input type="submit" name="submit" class='context'>
 </form>
 
 

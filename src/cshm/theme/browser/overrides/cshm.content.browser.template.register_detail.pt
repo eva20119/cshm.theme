@@ -34,8 +34,8 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
    roomDict = {'first_room': '第一教室', 'second_room': '第二教室', 'Taoyuan': '桃園', 'Zhongli': '中壢', 'Tainan': '台南', 'Kaohsiung': '高雄'}
 ?>
 <form method='post' onsubmit='return checkTitle()'>
-  <input type='submit' id='send'>
-  <button id='cancel_edit' style='background: red;border-color: red'>取消</button>
+  <input type='submit' id='send' class='context'>
+  <button id='cancel_edit' class='destructive'>取消</button>
 
   <input type='hidden' value='1' name='update'/>
 <div class="table-responsive">

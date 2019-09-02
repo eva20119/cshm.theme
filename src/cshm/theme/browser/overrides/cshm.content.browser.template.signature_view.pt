@@ -26,9 +26,8 @@ a{
 </style>
 
 
-<button onclick="location.href='${portal_url}/search_signature_view'">簽呈查詢</button>
-<button onclick="location.href='${portal_url}/add_signature_sample'">新增範本</button>
-<button onclick="location.href='${portal_url}/search_signature_view'">新增範本</button>
+<button onclick="location.href='${portal_url}/search_signature_view'" class='context'>簽呈查詢</button>
+<button onclick="location.href='${portal_url}/add_signature_sample'" class='context'>新增範本</button>
 <br><br>
 
 <table>
@@ -65,7 +64,7 @@ a{
             <a href='${portal_url}/manage_signature?id=${python: item[0]}'>狀態管理</a>
         </td>
         <td>
-             <button onclick="location.href='${portal_url}/manage_signature?id=${python: item[0]}&status=已核准'">設為已核准</button>
+             <button onclick="location.href='${portal_url}/manage_signature?id=${python: item[0]}&status=已核准'"  class='context'>設為已核准</button>
         </td>
     </tr>
 </table>

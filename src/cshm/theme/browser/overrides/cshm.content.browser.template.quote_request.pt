@@ -24,13 +24,13 @@ portal = api.portal.get()
 
 <h3>企業訓練需求表</h3>
 
-<form>
+<form method='post'>
 
 <h4>企業基本資料</h4>
 <table>
   <tr class="tr-body">
     <td>公司名稱</td>
-    <td><input id="company-name" name="company-name"></td>
+    <td><input id="company-name" name="company-name" required></td>
   </tr>
   <tr class="tr-body"> 
     <td>統一編號</td>
@@ -42,7 +42,7 @@ portal = api.portal.get()
   </tr>
   <tr class="tr-body">
     <td>公司人數</td>
-    <td><input id="staff-amount" name="staff-amount"></td>
+    <td><input id="staff-amount" name="staff-amount" required></td>
   </tr>
   <tr class="tr-body">
     <td>資本額</td>
@@ -91,11 +91,11 @@ portal = api.portal.get()
   <tr class="tr-body">
     <td>訓練項目(多選)</td>
     <td>
-      <tal:item repeat="item python:portal['resource']['course_template'].getChildNodes()">
-        <span style="white-space:nowrap">
-          <input type="checkbox" value="${item/UID}" name="course-name">${item/title} /
-        </span>
-      </tal:item>
+      <select required name='course-name' style='width: 100%'>
+        <tal:item repeat="item python:portal['resource']['course_template'].getChildNodes()">
+          <option value="${item/UID}">${item/title}</option>
+        </tal:item>
+      </select>
     </td>
   </tr>
 
@@ -112,18 +112,14 @@ portal = api.portal.get()
 
   <tr class="tr-body">
     <td>受訓人數</td>
-    <td><input id="people-number" name="people-number" type="number"></td>
+    <td><input id="people-number" name="people-number" type="number" required></td>
   </tr>
 
 
 </table>
 
-
-<input type="submit" name="submit">
+<input type="submit" name="submit" class='context'>
 </form>
-
-
-
 
 
 

@@ -154,7 +154,7 @@ portal_url = portal.absolute_url()
           <input name="company_name" class="" type="text" placeholder="服務單位">
         </td>
         <td style='border: 1px solid'>
-          <input name="submit" type="submit" value="送出">
+          <input name="submit" type="submit" value="送出" class='context'>
         </td>
       </tr>
     </table>

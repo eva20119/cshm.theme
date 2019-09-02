@@ -181,7 +181,8 @@ a{
     </tr>
     <tr>
         <td colspan='2' style='text-align: center'>
-          <button>送出</button>
+          <input value='${view/id}' name='id' type='hidden'/>
+          <button  class='context'>送出</button>
         </td>
     </tr>
   </tbody>
@@ -189,7 +190,7 @@ a{
 </div>
 </form>
 <div style='text-align:center;margin: 20px' class='col-md-12'>
-  <button id='back' onclick="location.href='${portal_url}/signature_view'">回上一頁</button>
+  <button id='back' onclick="location.href='${portal_url}/signature_view'"  class='context'>回上一頁</button>
 </div>
 
 <script>
