@@ -18,6 +18,13 @@
 <metal:content-core define-macro="content-core"
                     tal:define="toc context/table_of_contents|nothing;">
 
+<style>
+.date_container{
+    display: inline;
+    text-align: center;
+    vertical-align: middle;
+}
+</style>
 
 
 <a href="${context/absolute_url}/@@register_detail" style="float:right">回課程管理</a>
@@ -42,7 +49,7 @@
               <option value="${item/UID}">${item/title}</option>
             </tal:item>
           </select>
-          <input type="button" class="add-scheduling" value="新增">
+          <input type="button" class="add-scheduling context" value="新增">
   </p>
 </div>
 <a class="check-hours" href="javascript:void(0)" style="float:right">時數檢核</a>
@@ -100,8 +107,11 @@
         </td>
         <td>${item/hours}</td>
         <td>
-          日期:
-          <input  type='text' placeholder="格式: 107/2/12" name="year" style="width:80px;display: inline" id="date-${item/UID}">
+          <label class='date_container'>
+            日期:
+            <input  type='text' placeholder="格式: 107/2/12" name="year" style="width:200px;display: inline" id="date-${item/UID}">
+          </label>
+          <label class='date_container'>
           <tal:ignore condition="not:item/ignoreSchedule">
             起: <input type='text' placeholder="格式: 1800" style="width:100px;display: inline"" id="start-${item/UID}">
             迄: <input type='text' placeholder="格式: 2100" style="width:100px;display: inline"" id="end-${item/UID}">
@@ -110,14 +120,15 @@
             起: <input type='text' value="0900" placeholder="格式: 1800" style="width:100px;display: inline"" id="start-${item/UID}">
             迄: <input type='text' value="1800" placeholder="格式: 2100" style="width:100px;display: inline"" id="end-${item/UID}">
           </tal:ignore>
-
+          </label>
         </td>
 
         <td>
-          <input type="number" value="${python:int(item.hours * 800)}" name="teacher_fee" id="teacher_fee-${item/UID}">
+          <input type="number" value="${python:int(item.hours * 800)}" name="teacher_fee" id="teacher_fee-${item/UID}" 
+                 style='width: 80px'>
         </td>
         <td>
-          <input type="number" value="400" name="traffic_fee" id="traffic_fee-${item/UID}">
+          <input type="number" value="400" name="traffic_fee" id="traffic_fee-${item/UID}" style='width: 80px'>
         </td>
 
         <td>
@@ -159,34 +170,44 @@
           </td>
           <td>${item/hours}</td>
           <td tal:condition="python:record['start'] is None">
-            日期:
-            <input type='text' placeholder="格式: 107/2/12" name="year" style="width:80px;display: inline""
-                   id="date-${record/id}">
-            起: <input  type='text' placeholder="格式: 1800" style="width:100px;display: inline""
-                       id="start-${record/id}">
-            迄: <input type='text' placeholder="格式: 2100" style="width:100px;display: inline""
-                       id="end-${record/id}">
+            <label class='date_container'>
+              日期:
+              <input type='text' placeholder="格式: 107/2/12" name="year" style="width:200px;display: inline"
+                     id="date-${record/id}">
+            </label>
+            <label class='date_container'>
+              起: <input  type='text' placeholder="格式: 1800" style="width:100px;display: inline""
+                         id="start-${record/id}">
+              迄: <input type='text' placeholder="格式: 2100" style="width:100px;display: inline""
+                         id="end-${record/id}">
+            </label>
           </td>
           <td tal:condition="python:record['start'] is not None">
-            日期:
-            <input type='text' placeholder="格式: 107/2/12" name="year" style="width:80px;display: inline""
-                   value="${python:record['start'].year-1911}/${python:record['start'].strftime('%-m/%-d')}"
-                   id="date-${record/id}">
-            起: <input type='text' placeholder="格式: 1800" style="width:100px;display: inline""
-                       value="${python:record['start'].strftime('%H%M')}"
-                       id="start-${record/id}">
-            迄: <input type='text' placeholder="格式: 2100" style="width:100px;display: inline""
-                       value="${python:record['end'].strftime('%H%M')}"
-                       id="end-${record/id}">
+            <label class='date_container'>
+              日期:
+              <input type='text' placeholder="格式: 107/2/12" name="year" style="width:200px;display: inline"
+                     value="${python:record['start'].year-1911}/${python:record['start'].strftime('%-m/%-d')}"
+                     id="date-${record/id}">
+            </label>
+            <label class='date_container'>
+              起: <input type='text' placeholder="格式: 1800" style="width:100px;display: inline""
+                         value="${python:record['start'].strftime('%H%M')}"
+                         id="start-${record/id}">
+              迄: <input type='text' placeholder="格式: 2100" style="width:100px;display: inline""
+                         value="${python:record['end'].strftime('%H%M')}"
+                         id="end-${record/id}">
+            </label>
           </td>
 
           <td>   
             <input type="number" id="teacher_fee-${record/id}"
-                   value="${python:int(item.hours * 800) if record['teacher_fee'] is None else record['teacher_fee']}" name="teacher_fee">
+                   value="${python:int(item.hours * 800) if record['teacher_fee'] is None else record['teacher_fee']}" name="teacher_fee"
+                   style='width: 80px'>
           </td>
           <td>
             <input type="number" id="traffic_fee-${record/id}"
-                   value="${python:400 if record['traffic_fee'] is None else record['traffic_fee']}" name="traffic_fee">
+                   value="${python:400 if record['traffic_fee'] is None else record['traffic_fee']}" name="traffic_fee"
+                   style='width: 80px'>
           </td>
 
           <td>
@@ -309,13 +330,15 @@ $(document).ready(function(){
 
     /* 刪除一列 */
     $('.deleterow').click(function(){
-        uid = $(this).data('uid')
-        data = {uid: uid,
-                update_class_scheduling: true,
-                deleterow: true,
-               }
-        rest(uid, data)
-        location.reload();
+        if(confirm('確認要刪除排課嘛?')){
+            uid = $(this).data('uid')
+            data = {uid: uid,
+                    update_class_scheduling: true,
+                    deleterow: true,
+                   }
+            rest(uid, data)
+            location.reload();
+        }
     })
 
 

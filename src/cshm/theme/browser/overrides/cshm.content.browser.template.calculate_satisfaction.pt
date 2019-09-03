@@ -42,20 +42,20 @@ th{
     <input value="${python:view.write_rate}" type='hidden' name='write_rate'>
     <input value="${python:view.write_numbers}" type='hidden' name='write_numbers'>
     <input value="${python:view.numbers}" type='hidden' name='numbers'>
-    <input type='submit' value='下載Excel' />
+    <input type='submit' value='下載Excel' class='context'/>
 </form>
 
 <table>
     <tr>
-        <th colspan='5'>中國勞工安全衛生管理學會</th>
+        <th colspan='6'>中國勞工安全衛生管理學會</th>
     </tr>
     <tr>
         <th colspan='1'>第${view/period}期</th>
-        <th colspan='3'>${view/course}</th>
+        <th colspan='4'>${view/course}</th>
         <th colspan='1'>訓練班</th>
     </tr>
     <tr>
-        <td colspan='5'> &nbsp;</td>
+        <td colspan='6'> &nbsp;</td>
     </tr>
     <tr>
        <th>日期</th>
@@ -63,6 +63,7 @@ th{
         <th>講師</th>
         <th style='wdith: 250px'>平均權值</th>
         <th style='width: 250px'>權值分數</th>
+        <th>單科回收率</th>
     </tr>
     <tr tal:repeat="data view/date_teacher">
       <td>${python: data[0]}</td>
@@ -70,28 +71,29 @@ th{
       <td>${python: data[1]}</td>
       <td>${python: data[2]}</td>
       <td>${python: data[2] * 20}</td>
+      <td>${python: data[4]}</td>
     </tr>
     <tr>
-        <th colspan=''>環境權值分數</th>
-        <th colspan='3'>輔導員權值分數</th>
-        <th>講師整體權值分數</th>
+        <th colspan='2'>環境權值分數</th>
+        <th colspan='2'>輔導員權值分數</th>
+        <th colspan='2'>講師整體權值分數</th>
     </tr>
     <tr>
-        <td colspan=''>${view/point_space}</td>
-        <td colspan='3'>${view/point_envir}</td>
-        <td>${view/point_teacher}</td>
+        <td colspan='2'>${view/point_space}</td>
+        <td colspan='2'>${view/point_envir}</td>
+        <td colspan='2'>${view/point_teacher}</td>
     </tr>
     <tr>
-        <th colspan='5'>總體權值分數</th>
+        <th colspan='6'>總體權值分數</th>
     </tr>
     <tr>
-        <td colspan='5'>${view/point_total}</td>
+        <td colspan='6'>${view/point_total}</td>
     </tr>
     <tr>
-        <th colspan='5'>已填份數 / 總份數 = 回收率</th>
+        <th colspan='6'>已填份數 / 總份數 = 回收率</th>
     </tr>
     <tr>
-        <td colspan='5'>${view/write_numbers} / ${view/numbers} = ${view/write_rate}%</td>
+        <td colspan='6'>${view/write_numbers} / ${view/numbers} = ${view/write_rate}%</td>
     </tr>
 
 </table>

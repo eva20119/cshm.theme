@@ -56,11 +56,11 @@ input[type='number']{
 }
 </style>
 <div id='survey_btn'>
-    <button id='satisfaction'>滿意度</button>
-    <button id='manager'>訓前-管理員</button> 
-    <button id='c_type'>訓前-丙種職業</button>
-    <button id='stacker'>訓前-堆高機</button>
-    <button id='emergency'>訓前-急救人員</button>
+    <button class='context' id='satisfaction'>滿意度</button>
+    <button class='context' id='manager'>訓前-管理員</button> 
+    <button class='context' id='c_type'>訓前-丙種職業</button>
+    <button class='context' id='stacker'>訓前-堆高機</button>
+    <button class='context' id='emergency'>訓前-急救人員</button>
 </div>
 
 <div id="result"></div>

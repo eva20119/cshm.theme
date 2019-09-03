@@ -53,7 +53,8 @@ from plone import api
 abs_url = api.portal.get().absolute_url()
 ?>
 <p class="col-xs-12 col-sm-12">尚未填寫完的問卷：</p>
-<select id='ex_data' class="col-xs-8 col-sm-8" tal:condition="view/ex_data" style="margin:0 15px 10px 15px"  onchange="changeSurvey()">
+
+<select id='ex_data' class="col-xs-7 col-sm-7" tal:condition="view/ex_data" style="margin:0px 15px" onchange="changeSurvey()">
     <option tal:repeat="ex_data view/ex_data" data-url="${python:ex_data[1]}">${python:ex_data[0]}</option>
 </select>
 
@@ -66,7 +67,7 @@ abs_url = api.portal.get().absolute_url()
     <input type='hidden' value='${view/studId}' readonly='readonly' name='studId'/>
     <div>
         <p>課程名稱：</p>
-        <input type="text" value='${view/subjectName}' readonly="readonly"  name='subjectName'/>    
+        <input type="text" value='${view/subjectName}' readonly="readonly"  name='subjectName' style='width: 60%'/>    
     </div>
     <div>
         <p>期數：</p>

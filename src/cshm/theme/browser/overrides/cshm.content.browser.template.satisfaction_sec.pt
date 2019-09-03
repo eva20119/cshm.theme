@@ -53,7 +53,8 @@ from plone import api
 abs_url = api.portal.get().absolute_url()
 ?>
 <p class="col-xs-12 col-sm-12" style="margin:0">尚未填寫完的問卷：</p>
-<select id='ex_data' class="col-xs-8 col-sm-8" tal:condition="view/ex_data" style="margin:0 15px 10px 15px " onchange="changeSurvey()">
+
+<select id='ex_data' class="col-xs-7 col-sm-7" tal:condition="view/ex_data" style="margin:0px 15px" onchange="changeSurvey()">
     <option tal:repeat="ex_data view/ex_data" data-url="${python:ex_data[1]}">${python:ex_data[0]}</option>
 </select>
 
@@ -66,7 +67,7 @@ abs_url = api.portal.get().absolute_url()
 
     <div>
         <p>課程名稱：</p>
-        <input type="text" value='${view/subjectName}' readonly="readonly"  name='subjectName'/>    
+        <input type="text" value='${view/subjectName}' readonly="readonly"  name='subjectName' style='width: 60%'/>    
     </div>
     <div>
         <p>期數：</p>
@@ -212,25 +213,26 @@ abs_url = api.portal.get().absolute_url()
         }
     }
     function checkForm(){
-        question9 = document.getElementsByName('question9')[0].value
-        question10 = document.getElementsByName('question10')[0].value
-        question11 = document.getElementsByName('question11')[0].value
-        question12 = document.getElementsByName('question12')[0].value
-        count = 0
+        q9 = $('textarea[name="question9"]').val().length
+        q10 = $('textarea[name="question10"]').val().length
+        q11 = $('textarea[name="question11"]').val().length
+        q12 = $('textarea[name="question12"]').val().length
+        var count = 0
 
-        document.querySelectorAll('input[type="radio"]:checked').forEach(function(e){
-            if(e.value == 1 || e.value == 2){
-                count += 1  
+        $('input:radio:checked').each(function(){
+            if($(this).val() == 1 || $(this).val() == 2){
+                count += 1
             }
         })
         if(count >= 1){
-            if(question9.length <= 15 && question10.length <=15 && question11.length <= 15 &&
-                question12.length <= 15){
+            if(q9 <= 15 && q10 <=15 && q11 <= 15 && q12 <= 15){
                 alert('您有選擇不太滿意或很不滿意，請填寫下面的意見欄，字數需多於15個字')
                 return false;
             }
+        }else if((q9 && q9 <= 15) || (q10 && q10 <= 15) || (q11 && q11 <= 15) || (q12 && q12 <= 15)){
+            alert('意見回饋字數須多餘15個字')
+            return false
         }
-
     }    
 </script>
 </metal:content-core>
