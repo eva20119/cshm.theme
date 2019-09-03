@@ -22,8 +22,9 @@
 from plone import api
 ?>
 
-  <table tal:define="item python:view.getCourse(view.result[0]['uid'])[0];
-                     obj python:item.getObject()"
+  <table tal:define="result python: view.result[0];
+                     obj python:view.getCourse(result['uid']);
+                    "
          border="0" cellpadding="0" cellspacing="0" class="ta1">
    <colgroup>
     <col width="99"/>
@@ -83,7 +84,7 @@ ${python:obj.courseEnd}
      </p>
     </td>
     <td class="ce7" style="text-align:left;width:22.58mm; ">
-${python:view.result[0]['name']}
+${python:result['name']}
     </td>
     <td class="ce2" style="text-align:left;width:22.58mm; ">
      <p>
@@ -91,7 +92,7 @@ ${python:view.result[0]['name']}
      </p>
     </td>
     <td class="ce7" style="text-align:left;width:22.58mm; ">
-${python:view.result[0]['studId']}
+${python:result['studId']}
     </td>
     <td class="ce2" style="text-align:left;width:22.58mm; ">
      <p>
@@ -99,7 +100,7 @@ ${python:view.result[0]['studId']}
      </p>
     </td>
     <td class="ce7" style="text-align:left;width:22.58mm; ">
-${python:view.result[0]['birthday']}
+${python:result['birthday']}
     </td>
    </tr>
    <tr class="ro2">
@@ -109,7 +110,7 @@ ${python:view.result[0]['birthday']}
      </p>
     </td>
     <td class="ce7" style="text-align:left;width:22.58mm; ">
-${python:view.result[0]['phone']}
+${python:result['phone']}
     </td>
     <td class="ce2" style="text-align:left;width:22.58mm; ">
      <p>
@@ -117,7 +118,7 @@ ${python:view.result[0]['phone']}
      </p>
     </td>
     <td class="ce7" style="text-align:left;width:22.58mm; ">
-${python:view.result[0]['cellphone']}
+${python:result['cellphone']}
     </td>
     <td class="ce2" style="text-align:left;width:22.58mm; ">
      <p>
@@ -125,7 +126,7 @@ ${python:view.result[0]['cellphone']}
      </p>
     </td>
     <td class="ce7" style="text-align:left;width:22.58mm; ">
-${python:view.result[0]['fax']}
+${python:result['fax']}
     </td>
    </tr>
    <tr class="ro3">
@@ -134,9 +135,21 @@ ${python:view.result[0]['fax']}
       Email
      </p>
     </td>
-    <td class="ce6" colspan="5" style="text-align:left;width:22.58mm; ">
-個人: <a href="mailto:${python:view.result[0]['priv_email']}">${python:view.result[0]['priv_email']}</a>
-公司: <a href="mailto:${python:view.result[0]['com_email']">${python:view.result[0]['com_email']}</a>
+    <td class="ce6" colspan="3" style="text-align:left;width:22.58mm; ">
+個人: <a href="mailto:${python:result['priv_email']}">${python:result['priv_email']}</a>
+公司: <a href="mailto:${python:result['com_email']">${python:result['com_email']}</a>
+    </td>
+    <td  style="text-align:left;width:22.58mm; " class='ce2'>
+      補課狀況
+    </td>
+    <td style="text-align:left;width:22.58mm; " class='ce2'>
+      <select id='status'>
+        <option value='1' tal:attributes="selected python: result['wait_make_up_status'] == 1">等候通知</option>
+        <option value='2' tal:attributes="selected python: result['wait_make_up_status'] == 2">安排補課</option>
+        <option value='3' tal:attributes="selected python: result['wait_make_up_status'] == 3">補課中</option>
+        <option value='4' tal:attributes="selected python: result['wait_make_up_status'] == 4">已完成</option>
+        <option value='5' tal:attributes="selected python: result['wait_make_up_status'] == 5">缺課取消</option>        
+      </select>
     </td>
    </tr>
    <tr class="ro2">
@@ -145,21 +158,24 @@ ${python:view.result[0]['fax']}
       證書編號
      </p>
     </td>
-    <td class="ce7" style="text-align:left;width:22.58mm; ">待補課
+    <td class="ce7" style="text-align:left;width:22.58mm; ">
+      <input type='text' value="${python: result['code']}" id='code'/>
     </td>
     <td class="ce2" style="text-align:left;width:22.58mm; ">
      <p>
       學科
      </p>
     </td>
-    <td class="ce7" style="text-align:left;width:22.58mm; ">0
+    <td class="ce7" style="text-align:left;width:22.58mm; ">
+       <input type='number' id='score1' value="${python: result['score1']}"/>
     </td>
     <td class="ce2" style="text-align:left;width:22.58mm; ">
      <p>
       術科
      </p>
     </td>
-    <td class="ce4" style="text-align:left;width:22.58mm; ">0
+    <td class="ce4" style="text-align:left;width:22.58mm; ">
+      <input type='number' id='score2' value="${python: result['score2']}"/>
     </td>
    </tr>
    <tr class="ro1">
@@ -171,7 +187,6 @@ ${python:view.result[0]['fax']}
    </tr>
    <tr class="ro1">
     <td class="ce3" colspan="6" style="text-align:left;width:22.58mm; ">
-     <p>
 <form method="get">
   <select name="subject">
     <tal:option repeat="subject python:view.getSubjects(obj.getParentNode().title)">
@@ -180,13 +195,10 @@ ${python:view.result[0]['fax']}
   </select>
   <input name="add_make_up" hidden>
   <input name="id" value="${python:view.request.form.get('id')}" hidden>
-  <input name="origin_reg_id" value="${python:view.result[0]['reg_course_id']}" hidden>
-  <input type="submit" name="submit" value="新增缺課">
+  <input name="origin_reg_id" value="${python:result['reg_course_id']}" hidden>
+  <input type="submit" name="submit" value="新增缺課" class='context'>
 </form>
 
-
-
-     </p>
     </td>
    </tr>
    <tr class="ro2">
@@ -252,9 +264,9 @@ ${sub_obj/hours}
     </tal:course>
     </select>
     <input name="id" value="${python:view.request.form.get('id')}" hidden>
-    <input name="origin_reg_id" value="${python:view.result[0]['reg_course_id']}" hidden>
+    <input name="origin_reg_id" value="${python:result['reg_course_id']}" hidden>
     <input name="reg_make_up" hidden>
-    <input type="submit" name="submit" value="登記補課">
+    <input type="submit" name="submit" value="登記補課" class='context'>
 </form>
 
 
@@ -291,6 +303,27 @@ ${sub_obj/hours}
 	<!-- ODF styles with no properties representable as CSS -->
 	 { }
   </style>
+
+<script>
+$(function(){
+    $('#code, #score1, #score2, #status').change(function(){
+        val = $(this).val()
+        target = this.id
+        id = location.search.split('=')[1]
+
+        $.ajax({
+            url: '${view/context/absolute_url}/@@make_up_detail',
+            data: {val: val, target: target, update_make_up: 1, id: id},
+            success: function(r){
+                if(r != 'success'){
+                    alert('更新錯誤, 請在試一次')
+                }
+            }
+        })
+    })
+})
+</script>
+
 </metal:content-core>
 </metal:content-core>
 

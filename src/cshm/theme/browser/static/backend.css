@@ -1,3 +1,6 @@
+td{
+  vertical-align: middle !important;
+}
 body {
   font-size: 14px;
   background: #fbf5797b;

@@ -45,8 +45,11 @@
           <input type="button" class="add-scheduling" value="新增">
   </p>
 </div>
-<a class="check-hours" href="javascript:void(0)" style="float:right">時數檢核</a> <span style="float:right">&nbsp;|&nbsp;</span>
+<a class="check-hours" href="javascript:void(0)" style="float:right">時數檢核</a>
+<span style="float:right">&nbsp;|&nbsp;</span>
 <a class="download" href="${context/absolute_url}/@@class_scheduling?download=1" target="_blank" style="float:right">排課報表下載</a>
+<span style="float:right">&nbsp;|&nbsp;</span>
+<a target="_blank" href="@@teacher_selector" style='float: right'>老師遴選</a> 
 
 <span style="background:#fff;border:1px solid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>&nbsp;未排課&nbsp;&nbsp;</span>
 <span style="background:#8c8;border:1px solid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>&nbsp;已排課&nbsp;&nbsp;</span>

@@ -46,7 +46,7 @@ $(document).ready(function(){
                 nos.push($(items[i]).val())
             }
         }
-
+        data['uid'] = $('#uid').val()
         $.post("@@update_seat_no", data)
             .done(function(data){
                 alert('更新座位編號成功')

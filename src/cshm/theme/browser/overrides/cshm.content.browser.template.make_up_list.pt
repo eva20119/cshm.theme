@@ -99,28 +99,30 @@
     </th>
    </tr>
    <tr class="ro1" tal:repeat="item view/result">
-<tal:data define="result python:view.get_reg_data(item['origin_reg_id']);
-                  data python:result[0];
-                  course python:view.get_course(data['uid'])[0];
-                  status python:view.get_training_status(data['training_status'])[0]">
+<tal:data define="content python: view.getCourseContent(item['make_up_course_uid']);
+                  name python: view.getName(item['origin_reg_id'])
+                 ">
+
     <td class="ce1" style="text-align:left;width:22.58mm; ">${repeat/item/number}
     </td>
-    <td class="ce1" style="text-align:left;width:22.58mm; ">${data/name}
+    <td class="ce1" style="text-align:left;width:22.58mm; ">${name}
     </td>
-    <td class="ce1" style="text-align:left;width:22.58mm; ">${python:course.getObject().getParentNode().title}
+    <td class="ce1" style="text-align:left;width:22.58mm; ">${python: content.getParentNode().title}
     </td>
-    <td class="ce1" style="text-align:left;width:22.58mm; ">${course/Title}
+    <td class="ce1" style="text-align:left;width:22.58mm; ">${content/id}
     </td>
-    <td class="ce1" style="text-align:left;width:22.58mm; ">
+    <td class="ce1" style="text-align:left;width:22.58mm; ">${python: item['new_reg_period']}
     </td>
-    <td class="ce1" style="text-align:left;width:22.58mm; ">${status/status}
+    <td class="ce1" style="text-align:left;width:22.58mm; ">${python: item['status']}
     </td>
     <td class="ce1" style="text-align:left;width:22.58mm; ">
     </td>
     <td class="ce1" style="text-align:left;width:22.58mm; ">
       <a target="_blank" href="${view/context/absolute_url}/@@make_up_detail?id=${item/id}">檢視</a>
     </td>
-    <td class="ce1" style="text-align:left;width:22.58mm; ">
+    <td class="ce1" style="text-align: center;width:22.58mm; ">
+      <button onclick="checkDelete(${item/id})" 
+              class='destructive'>刪除</button>
     </td>
     <td class="ce1" style="text-align:left;width:22.58mm; ">
     </td>
@@ -133,7 +135,13 @@
   </table>
 
 
-
+<script>
+function checkDelete(id){
+    if(confirm('確定要刪除嘛?')){
+        location.href='${view/context/absolute_url}/@@make_up_list?id=' + id + '&delete=1'
+    }
+}
+</script>
 
 
 

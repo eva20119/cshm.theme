@@ -19,6 +19,7 @@
                     tal:define="toc context/table_of_contents|nothing;">
 
 <h3>${python:context.getParentNode().title} / ${context/title}: 學生名單</h3>
+<input type='hidden' value='${view/context/UID}' id='uid'/>
 
 <hr>
 
@@ -119,7 +120,7 @@
 </table>
 </div>
 <br>
-<a id="update-seatNo" class="context">更新座位及受訓狀態</a>
+<a id="update-seatNo" class="context" style='color: white'>更新座位及受訓狀態</a>
 
 <hr>
 <h4>備取學員</h4>
