@@ -15,7 +15,7 @@
 from datetime import datetime
 now = datetime.now().strftime('%Y-%m-%d')
 ?>
-<button id='back' onclick="location.href='${portal_url}/signature_view'">回上一頁</button>
+<button id='back' onclick="location.href='${portal_url}/signature_view'" class='context'>回上一頁</button>
 <br><br>
 <label>
 <input type='radio' name='type' id='radio1' checked>
@@ -80,7 +80,7 @@ now = datetime.now().strftime('%Y-%m-%d')
 <input type='text' id='kw' style='display: inline;width: 20%' placeholder='關鍵字'>
 <br><br>
 
-<button id='search'>查詢</button>
+<button id='search' class='context'>查詢</button>
 <br>
 <div id='result' style='margin-top: 20px'></div>
 

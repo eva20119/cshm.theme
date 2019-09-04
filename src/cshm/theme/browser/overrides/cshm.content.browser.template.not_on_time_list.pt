@@ -25,9 +25,8 @@
 <?python
 from plone import api
 ?>
-
 <h4>講師調課/遲到/早退登記系統 列表</h4>
-<table>
+<table >
   <tr class="tr-title">
     <td>序號</td>
     <td>講師姓名</td>
@@ -43,7 +42,7 @@ from plone import api
     <td tal:content="repeat/item/number">序號</td>
     <td tal:content="item/teacher_name">講師姓名</td>
     <td tal:content="python:item.date.strftime('%Y/%m/%d')">日期</td>
-    <td tal:content="python:api.content.find(UID=item.subject_uid)[0].Title">課程名稱</td>
+    <td tal:content="python:api.content.get(UID=item.subject_uid).title">課程名稱</td>
     <td tal:content="item/status_code">類別</td>
     <td tal:content="item/in_scope">列入考評</td>
     <td tal:content="item/detail">事由</td>

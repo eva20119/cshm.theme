@@ -18,7 +18,7 @@
     <option tal:repeat="center view/centerList" value="${center/code}">${center/title}</option>
   </select>
 
-  <input type='submit'>
+  <input type='submit' class='context'>
 </form>
 
 </metal:content-core>

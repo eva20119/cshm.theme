@@ -367,7 +367,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
      <td class="td-title">
       <b>學員資料寄件</b>
      </td>
-     <td class="td-title">
+     <td>
        <p>${context/studDataSendDate}</p>
        <input type='date' value='${context/studDataSendDate}' class='edit' name='studDataSendDate'/>
      </td>
@@ -471,7 +471,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
      </td>
     </tr>
     <tr height="30">
-      <td colspan="6">
+      <td colspan="6" style='background:#28a745;color: white'>
         教  材
       </td>
     </tr>
@@ -568,7 +568,8 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
         <td>${python: obj['title']}</td>
         <td>${python: obj['status']}</td>
         <td>
-          <a href="${view/context/absolute_url}/modify_signature?id=${python: obj['id']}" target='_blank'>編輯</a>
+          <a href="${view/context/absolute_url}/modify_signature?id=${python: obj['id']}" target='_blank'
+             tal:condition="python: obj['status'] != '已核准'">編輯</a>
         </td>
      </tal:def2>
     </tr>

@@ -30,6 +30,15 @@ th a:hover{
 <?python
 import base64
 ?>
+
+<div>
+  <h2>回收率未達八成:
+    <tal:rep repeat="alert view/alertList">
+      <a href='#${alert}'>${alert}</a>/
+    </tal:rep>
+  </h2>
+</div>
+<br>
     <table>
       <tr tal:condition='view/hasExSurvey'>
         <th style='width: 50%'>
@@ -66,7 +75,7 @@ import base64
     </table>
 
     <br/>
-    <div tal:repeat="item view/data">
+    <div tal:repeat="item view/data" id="${python: item['title']}">
         日期：<span>${python:item['date']}</span><br>
         時間：<span>${python:item['time']}</span><br>
         授課名稱：<span>${python:item['title']}</span><br>

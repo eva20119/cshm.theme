@@ -93,6 +93,7 @@ table{
     border-color: #28a745;
     padding: 8px 10px;
     border-radius: 8px;
+    margin-right: 10px;
 }
 .create_receipt:hover{
     color: #fff;
@@ -166,9 +167,8 @@ table{
 }
 </style>
 
-<ul class='btn_group'>
-  <li data-action="create" class='more_create'>批次建立收據</li>
-</ul>
+
+<button class='context more_create'>批次建立收據</button>
 
 <tal:condition condition="view/admit">
   <table>
@@ -188,6 +188,7 @@ table{
         <td>${python: dict['name']}</td>
         <td class='money_container'>
           <input type="number" class="money" name="money" style="width: 20%"  data-user_id="${python: dict['id']}"
+                 data-receiptId="${python: dict['receiptId']}"
                  tal:attributes="disabled python: 'disabled' if money else ''" value="${python: money if money else view.context.courseFee}">
           <button tal:attributes="class python: 'hide do_update_money' if money else 'show do_update_money'">確認</button>
           <button tal:attributes="class python: 'show change_money' if money else 'hide change_money'">修改</button>
@@ -222,10 +223,7 @@ table{
 
 <script>
 $(function(){
-    $(".btn_group li").click(function(){
-        action = $(this).data()["action"]
-        data = {}
-        if(action == "create"){
+    $(".more_create").click(function(){
             userList = []
 	    $('input[type="checkbox"]:checked').each(function(){
                 user_id = $(this).data()["user_id"]
@@ -235,19 +233,19 @@ $(function(){
                 alert('請選擇兩個個以上的學員')                
                 return
             }
-            data['userList'] = userList
             url = location.href.replace("receipt_list", "receipt_create_view")
             url += '?userList=' + JSON.stringify(userList)
             location.href = url
-        }
     })
 
     $(".do_update_money").click(function(){
         money = $(this).siblings('.money').val()
         user_id = $(this).siblings('.money').data()['user_id']
+        receiptId = $(this).siblings('.money').data()['receiptid']
         data = {
             'money': money,
-            'user_id': user_id
+            'user_id': user_id,
+            'receiptId': receiptId
         }
         url = location.href.replace('receipt_list', 'update_receipt_money')
         self = $(this)

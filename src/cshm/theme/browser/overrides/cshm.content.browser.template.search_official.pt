@@ -16,12 +16,16 @@ input[type="text"]{
     width: 20%;
     display: inline;
 }
+td{
+    padding: 5px;
+}
 </style>
 
 公文字號：<input id='docHeader' type='text'>
 流水號：<input id='docSN' type='text'>
 
-<button class='btn'>Search</button>
+<button class='context' id='search'>Search</button>
+
 <a href="${portal_url}/@@create_official_view" class="pull-right">新建公文</a>
 
 <br><br>
@@ -37,8 +41,7 @@ portal = api.portal.get()
     <td>收件人</td>
     <td>日期</td>
     <td>歸於課程期別</td>
-    <td>下載</td>
-
+    <td></td>
   </tr>
   <tr tal:repeat="obj view/result" class="tr-body">
 <tal:item define="item python:obj.getObject()">
@@ -51,7 +54,7 @@ portal = api.portal.get()
     ${python:item.relatedEchelon.to_object.title if item.relatedEchelon else ''}
     <span tal:condition="item/relatedEchelon"> / </span>
     <a target="_blank"
-       href="${python:item.absolute_url()}/edit#autotoc-item-autotoc-1">編輯</a>
+       href="${python:item.absolute_url()}/edit">編輯</a>
     </td>
     <td><a href="${portal/absolute_url}/@@download_official_doc?uid=${item/UID}">下載</a></td>
 </tal:item>
@@ -63,7 +66,7 @@ portal = api.portal.get()
 
 <script>
 $(function(){
-    $('.btn').click(function(){
+    $('#search').click(function(){
         docHeader = $('#docHeader').val()
         docSN = $('#docSN').val()
         data = {
@@ -71,8 +74,7 @@ $(function(){
             'docSN': docSN
         }
         if(!docHeader && !docSN){
-            alert('請至少填一個')
-            return
+            location.reload()
         }
         $.ajax({
           type: 'post',

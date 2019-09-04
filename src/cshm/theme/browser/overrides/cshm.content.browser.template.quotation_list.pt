@@ -22,6 +22,12 @@ from plone import api
 portal = api.portal.get()
 ?>
 
+<style>
+td{
+    padding: 5px;
+}
+</style>
+
 <h3>企業訓練需求列表</h3>
 
 <table>
@@ -36,6 +42,7 @@ portal = api.portal.get()
     <td>受訓人數</td>
     <td>狀態</td>
     <td>管理報價</td>
+    <td></td>
   </tr>
 
   <tr class="tr-body" tal:repeat="item view/getList">
@@ -49,6 +56,9 @@ portal = api.portal.get()
     <td tal:content="item/people_number">受訓人數</td>
     <td tal:content="python:view.getStatus(item['status'])[0]['status']">狀態</td>
     <td><a target="_blank" href="${portal/absolute_url}/@@quotation_manage?id=${item/id}">管理報價</a></td>
+    <td>
+      <a target='_blank' href="${portal/absolute_url}/search_signature_view?uid=${item/id}">簽呈狀況</a>
+    </td>
   </tr>
 
 </table>

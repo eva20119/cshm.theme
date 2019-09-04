@@ -257,7 +257,7 @@ ${item/seatNo}
   </table>
 
 <input name="update" hidden>
-<input type="submit" name="submit" value="更新追蹤表">
+<input type="submit" name="submit" value="更新追蹤表" class='context'>
 
 
 </form>

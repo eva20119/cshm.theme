@@ -66,7 +66,7 @@ table{
 </style>
   <h1>簽到表：</h1>
   <tal:def  define="class_scheduling view/class_scheduling">
-    <button tal:repeat="item view/class_scheduling" 
+    <button tal:repeat="item view/class_scheduling" class='context'
             onclick="location.href='${python: view.context.absolute_url()}/normal_sing_in_report?id=${python: class_scheduling[item]}'">${item}</button>
   </tal:def>
   <br><br>
@@ -76,7 +76,7 @@ table{
     請選擇個數   總共${view/total_number}位：<input type='number'  id='gap' min="1" value='1'>
   </label>
   <br>
-  <button id='send'>送出</button>
+  <button id='send' class='context'>送出</button>
 
 <div id='page_list'>
 

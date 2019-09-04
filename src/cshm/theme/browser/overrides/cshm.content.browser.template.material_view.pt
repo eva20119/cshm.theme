@@ -140,7 +140,7 @@ a{
                 </td>
 		<td class='preview' data-order_id="${python: order[2]}" style='cursor: pointer;color: #007bb1'>檢視</td>
                 <td date-order_id="${python: order[2]}" style='cursor: pointer;color: #007bb1'>
-                  <button class='update'>更新</button>
+                  <button class='update context'>更新</button>
                   <div class='hide'>
                     <button class='confirm' data-order_id='${python: order[2]}'>確認</button>
                     <button class='cancel' style='background: brown;border-color: brown'>取消</button>
@@ -191,7 +191,7 @@ a{
 	      <input type='hidden' name='detail' class='material_detail'>
 	    </table>
             <div style='text-align: center;margin-top: 20px'>
-              <input type='submit' style='width:85px'>
+              <input type='submit' style='width:85px' class='context'>
             </div>
 	  </form>
 	</div>
@@ -222,7 +222,7 @@ a{
 	      <input type='hidden' name='detail' class='material_detail'>
 	    </table>
             <div style='text-align: center;margin-top: 20px'>
-	      <input type='submit' style='width:85px'>
+	      <input type='submit' style='width:85px' class='context'>
             </div>
 	  </form>
 	</div>

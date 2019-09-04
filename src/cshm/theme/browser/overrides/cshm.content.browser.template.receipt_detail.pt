@@ -70,7 +70,7 @@ h4{
     </div>
     <div class='inline w400'>
       <h4 class='w150'>審核日期</h4>
-      <span>${python: obj['two_check_date'] if obj['two_check_date'] else obj['onw_check_date']}</span>
+      <span>${python: obj['two_check_date'] if obj['two_check_date'] else obj['one_check_date']}</span>
     </div>
     <div class='inline w400'>
       <h4 class='w150'>審核者</h4>
