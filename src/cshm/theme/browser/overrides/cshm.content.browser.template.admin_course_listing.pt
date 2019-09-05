@@ -20,15 +20,15 @@ from plone import api
   <thead class="thead-dark">
     <tr>
       <th>課程名稱</th>
-      <th>期數</th>
+      <th>數量</th>
     </tr>
   </thead>
   <tbody>
-    <tr tal:repeat="item view/children">
+    <tr tal:repeat="item view/courseDict">
       <td>
-        <a tal:content="item/title" tal:attributes="href string:${item/absolute_url}/@@echelon_listing">課程名稱</a>
+        <a href="${python: view.courseDict[item]['url']}/@@echelon_listing">${item}</a>
       </td>
-      <td tal:content="python:len(api.content.find(context=item, portal_type='Echelon'))">期數</td>
+      <td>${python: view.courseDict[item]['count']}</td>
     </tr>
   </tbody>
 

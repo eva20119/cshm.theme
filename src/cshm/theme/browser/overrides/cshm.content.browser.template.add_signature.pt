@@ -182,6 +182,7 @@ a{
     <tr>
         <td colspan='2' style='text-align: center'>
           <input value='${view/id}' name='id' type='hidden'/>
+          <input value='${view/fromURL}' name='fromURL' type='hidden'/>
           <button  class='context'>送出</button>
         </td>
     </tr>

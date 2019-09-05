@@ -63,7 +63,9 @@ input[type="text"], input[type="date"]{
 <br>
 <span>公文內容10：</span><input name='detail_10' type='text'>
 <br>
-<button>Send</button>
+<input type='hidden' value='${view/fromURL}' name='fromURL'>
+<button class='context'>Send</button>
+
 </form>
 </metal:content-core>
 </metal:content-core>

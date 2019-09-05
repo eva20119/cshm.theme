@@ -36,10 +36,9 @@ a{
         <td>編號</td>
         <td>速別</td>
         <td>簽呈日期</td>
-        <td style='width: 700px'>主旨</td>
+        <td style='width: 600px'>主旨</td>
         <td>承辦人</td>
         <td>狀態</td>
-        <td>修改</td>
         <td>套印</td>
         <td>管理</td>
         <td>批准</td>
@@ -53,9 +52,6 @@ a{
         <td>${python: item[1]}</td>
         <td>${python: item[13]}</td>
         <td>
-            <a href='${portal_url}/modify_signature?id=${python: item[0]}' tal:condition="python: item[1] == user">修改</a>
-        </td>
-        <td>
             <a href='${portal_url}/download_signature_doc?id=${python: item[0]}&type=1' target='_blank'>格式一</a>
             <br>
             <a href='${portal_url}/download_signature_doc?id=${python: item[0]}&type=2' target='_blank'>格式二</a>
@@ -64,7 +60,8 @@ a{
             <a href='${portal_url}/manage_signature?id=${python: item[0]}'>狀態管理</a>
         </td>
         <td>
-             <button onclick="location.href='${portal_url}/manage_signature?id=${python: item[0]}&status=已核准'"  class='context'>設為已核准</button>
+             <button onclick="location.href='${portal_url}/manage_signature?id=${python: item[0]}&status=已核准'"  class='context'
+                 tal:condition="python: item['status'] != '已核准'">核准</button>
         </td>
     </tr>
 </table>

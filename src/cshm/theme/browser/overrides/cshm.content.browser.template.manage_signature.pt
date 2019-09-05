@@ -74,7 +74,7 @@ td{
             <option value="尚未核准">尚未核准</option>
           </select>
           <input value='${python: item[0]}' name='id' type='hidden'>
-          <button>送出</button>
+          <button class='context'>送出</button>
         </td>
     </tr>
     <tr>
@@ -86,7 +86,7 @@ td{
 </table>
 </form>
 <div style='text-align:center;margin-top: 20px'>
-  <button id='back' onclick="location.href='${portal_url}/signature_view'">回上一頁</button>
+  <button id='back' onclick="location.href='${portal_url}/signature_view'" class='context'>回上一頁</button>
 </div>
 <script>
 $(function(){

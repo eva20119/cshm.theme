@@ -182,6 +182,7 @@ a{
     <tr>
         <td colspan='2' style='text-align: center'>
           <input type='hidden' value='${python: item[0]}' name='id'>
+          <input type='hidden' value='${view/fromURL}' name='fromURL'>
           <button class='context'>送出</button>
         </td>
     </tr>

@@ -512,7 +512,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
       <td>${python: receive['title']}</td>
       <td>${python: receive['date']}</td>
       <td>
-        <a href="${python: receive['editUrl']}" target='_blank'>編輯</a>
+        <a href="${python: receive['editUrl']}?fromURL=${view/context/absolute_url}/register_detail">編輯</a>
       </td>
     </tr>
   </tbody>
@@ -535,7 +535,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
       <td>${python: send['title']}</td>
       <td>${python: send['date']}</td>
       <td>
-        <a href="${python: send['editUrl']}" target='_blank'>編輯</a>
+        <a href="${python: send['editUrl']}?fromURL=${view/context/absolute_url}/register_detail">編輯</a>
       </td>
     </tr>
   </tbody>
@@ -555,8 +555,8 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
       <th>簽呈分類</th>
       <th>速別</th>
       <th>主旨</th>
-      <th>狀態</th>
-      <th></th>
+      <th style='width: 55px'>狀態</th>
+      <th style='width: 50px'></th>
     </tr>
   </thead>
   <tbody>
@@ -568,7 +568,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
         <td>${python: obj['title']}</td>
         <td>${python: obj['status']}</td>
         <td>
-          <a href="${view/context/absolute_url}/modify_signature?id=${python: obj['id']}" target='_blank'
+          <a href="${view/context/absolute_url}/modify_signature?id=${python: obj['id']}&fromURL=${view/context/absolute_url}/register_detail"
              tal:condition="python: obj['status'] != '已核准'">編輯</a>
         </td>
      </tal:def2>

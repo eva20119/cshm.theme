@@ -31,7 +31,7 @@ input[type="text"], input[type="date"]{
   <option value='receive' tal:attributes='selected python: context.status == "receive"'>收文</option>
 </select>
 <br>
-<span>日期：</span><input name='docDate' type='date' value='${context/docDate}' style='width: 20%' required>
+<span>日期：</span><input name='docDate' type='date' value="${python: context.docDate.strftime('%Y-%m-%d')}" style='width: 20%' required>
 <br>
 <span>標題：</span><input name='title' type='text' value='${context/title}' required>
 <br>
@@ -57,7 +57,9 @@ input[type="text"], input[type="date"]{
 <br>
 <span>公文內容10：</span><input name='detail_10' type='text' value='${context/detail_10}'>
 <br>
-<button>更新</button>
+
+<button class='context'>更新</button>
+
 </form>
 
 </metal:content-core>

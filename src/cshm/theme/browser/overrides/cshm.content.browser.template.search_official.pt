@@ -21,7 +21,12 @@ td{
 }
 </style>
 
-公文字號：<input id='docHeader' type='text'>
+公文字號：
+<select id='docHeader'>
+  <option value='測'>測</option>
+  <option value='訓'>訓</option>
+  <option value='花'>花</option>
+</select>
 流水號：<input id='docSN' type='text'>
 
 <button class='context' id='search'>Search</button>

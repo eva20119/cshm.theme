@@ -120,7 +120,7 @@ a{
 	      <tr tal:repeat="order view/orderList" class="${python: order[5]}">
 		<td>${repeat/order/number}</td>
 		<td>
-                  <p>${python: order[0]}</p>
+                  ${python: order[0]}
                   <select class='hide'>
                     <option value='尚未處理' tal:attributes="selected python: order[0] == '尚未處理'">尚未處理</option>
                     <option value='出貨中' tal:attributes="selected python: order[0] == '出貨中'">出貨中</option>
@@ -142,8 +142,8 @@ a{
                 <td date-order_id="${python: order[2]}" style='cursor: pointer;color: #007bb1'>
                   <button class='update context'>更新</button>
                   <div class='hide'>
-                    <button class='confirm' data-order_id='${python: order[2]}'>確認</button>
-                    <button class='cancel' style='background: brown;border-color: brown'>取消</button>
+                    <button class='confirm context' data-order_id='${python: order[2]}'>確認</button>
+                    <button class='cancel destructive' >取消</button>
                   </div>
                 </td>
 	      </tr>
@@ -168,7 +168,7 @@ a{
 	  <p class='content_title deepblue'>${python: view.context.getParentNode().title}${view/context/title}</p>
 	  <p class='content_title deepblue'>教材申請/追加</p>
 
-	  <form action='manipulate_material' method='post'>
+	  <form action='manipulate_material' method='post' id='add'>
             <div style='display:inline'>
 	      <label>※指定寄送地址：<input type='text' name='address' required></label><br>
 	      <label>※備　　　　註：<input type='text' name='remark' required></label><br>
@@ -199,7 +199,7 @@ a{
 	<div id='return' style='display:none'>
 	  <p class='content_title deepred'>${python: view.context.getParentNode().title}${view/context/title}</p>
 	  <p class='content_title deepred'>教材退還申請</p>
-	  <form action='manipulate_material' method='post'>
+	  <form action='manipulate_material' method='post' id='reduce'>
             <div style='display:inline'>
               <label>※指定寄送地址：<input type='text' name='address' required></label><br>
               <label>※備　　　　註：<input type='text' name='remark' required></label><br>
@@ -217,7 +217,7 @@ a{
 		  <td>${repeat/material/number}</td>
 		  <td>${python: material[0]}</td>
 		  <td>${python: material[2]}</td>
-		  <td><input type='number' min=0 class='add_material' data-name='${python: material[0]}' value='0'></td>
+		  <td><input type='number' min=0 class='reduce_material' data-name='${python: material[0]}' value='0'></td>
 	      </tr>
 	      <input type='hidden' name='detail' class='material_detail'>
 	    </table>
@@ -269,9 +269,10 @@ $(function(){
 
     $('form').submit(function(){
         detail = ''
-        $('.add_material').each(function(){
+        id = this.id
+        $('.' + id  + '_material').each(function(){
             name = $(this).data()['name']
-            val = $(this).val()
+            val = parseInt($(this).val())
             if(val){
                 detail += name + '*' + val + '/'
             }
