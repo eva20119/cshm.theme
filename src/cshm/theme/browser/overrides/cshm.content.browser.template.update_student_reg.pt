@@ -216,25 +216,25 @@
       <b>承辦人員</b>
      </td>
      <td>
-      <input type="text" value=" "/>
+      <input type="text" value="${student/company_undertaker}" name='company_undertaker'/>
      </td>
      <td class='td-title'>
       <b>部　　門</b>
      </td>
      <td>
-      <input type="text" value=" "/>
+      <input type="text" value="${student/company_undertaker_department}" name='company_undertaker_department'/>
      </td>
      <td class='td-title'>
       <b>職稱</b>
      </td>
      <td>
-      <input type="text" v-model="job_title"/>
+      <input type="text" value='${student/company_undertaker_job}' name='company_undertaker_job'/>
      </td>
      <td class='td-title'>
       <b>電　　話</b>
      </td>
      <td>
-      <input type="text" value=" "/>
+      <input type="text" value='${student/company_undertaker_phone}' name='company_undertaker_phone'/>
      </td>
     </tr>
     <tr>
@@ -242,7 +242,7 @@
       <b>傳　　真</b>
      </td>
      <td colspan="9">
-      <input type="text" value=" "/>
+      <input type="text" value='${student/company_undertaker_fax}' name='company_undertaker_fax'/>
      </td>
     </tr>
     <tr class="tr-head">
@@ -319,23 +319,18 @@
       <b>上課狀況</b>
      </td>
      <td colspan="9">
-      <select name="d1">
-       <option>
-        
-       </option>
-       <option>
+      <select name="attendStatus">
+       <option></option>
+       <option tal:attributes="selected python: student['attendStatus'] == '確認上課'">
         確定上課
        </option>
-       <option>
+       <option tal:attributes="selected python: student['attendStatus'] == '考慮中'">
         考慮中
        </option>
-       <option>
-        確定上課
-       </option>
-       <option>
+       <option tal:attributes="selected python: student['attendStatus'] == '延期'">
         延期
        </option>
-       <option>
+       <option tal:attributes="selected python: student['attendStatus'] == '取修報名'">
         取消報名
        </option>
       </select>
@@ -346,30 +341,28 @@
       <b>上課通知</b>
      </td>
      <td colspan="9">
-      <select name="d10">
-       <option>
-        
-       </option>
-       <option>
+      狀態:
+      <select name="noticeStatus">
+       <option></option>
+       <option  tal:attributes="selected python: student['noticeStatus'] == '已mail'" value="已mail">
         已mail
        </option>
-       <option>
+       <option  tal:attributes="selected python: student['noticeStatus'] == '未傳送'"  value="未傳送">
         未傳送
        </option>
-       <option>
+       <option  tal:attributes="selected python: student['noticeStatus'] == '已傳真'" value="已傳真">
         已傳真
        </option>
-       <option>
-        已mail
-       </option>
-       <option>
+       <option  tal:attributes="selected python: student['noticeStatus'] == '已交付'" value="已交付">
         已交付
        </option>
-       <option>
+       <option  tal:attributes="selected python: student['noticeStatus'] == '已告知'" value="已告知">
         已告知
        </option>
       </select>
-      <input maxlength="40" name="d11" type="text" value=" "/>
+      <br><br>
+      紀錄:
+      <input name="noticeLog" type="text" value="${student/noticeLog}" style='width: 80%;display: inline'/>
      </td>
     </tr>
     <tr>
@@ -377,12 +370,14 @@
       <b>收據抬頭</b>
      </td>
      <td colspan="9">
-      <input type="text" v-model="invoice_title" name="invoice_title"/>
-      統編
-      <input type="text" v-model="tax_no" name="tax_no"/>
+      抬頭:
+      <input type="text" v-model="invoice_title" name="invoice_title"  style='width: 80%;display: inline'/>
+      <br><br>
+      統編:
+      <input type="text" v-model="tax_no" name="tax_no" style='width: 80%;display: inline'/>
      </td>
     </tr>
-    <tr>
+    <tr tal:condition="python: 0">
      <td class='td-title'>
       <b>繳費狀況</b>
      </td>
@@ -408,7 +403,7 @@
       <b>匯款紀錄</b>
      </td>
      <td colspan="9">
-      <input maxlength="50" name="payInfo" type="text" value=" "/>
+      <input name="payInfo" type="text" value="${student/payInfo}"/>
      </td>
     </tr>
     <tr>
@@ -416,32 +411,26 @@
       <b>繳交資料</b>
      </td>
      <td colspan="3">
-      <input name="d_1" type="checkbox"/>
+      <input name="uploadPic" type="checkbox" tal:attributes="checked python: student['uploadPic']"/>
       照片
-      <input name="d_2" type="checkbox"/>
+      <input name="uploadId" type="checkbox" tal:attributes="checked python: student['uploadId']"/>
       身分證影本
-      <input name="d_3" type="checkbox"/>
+      <input name="uploadLicence" type="checkbox" tal:attributes="checked python: student['uploadLicence']"/>
       畢業證書影本/結業證書
      </td>
      <td class='td-title'>
       <b>教材領取</b>
      </td>
      <td colspan="3">
-      <input name="x2" type="text" value=" "/>
+      <input name="receiveMaterial" type="text" value="${student/receiveMaterial}"/>
      </td>
     </tr>
     <tr>
      <td class='td-title'>
       <b>資料說明</b>
      </td>
-     <td colspan="3">
-      
-     </td>
-     <td class='td-title'>
-      <b>最近修改</b>
-     </td>
-     <td colspan="3">
-      
+     <td colspan="10">
+       <input name='notice' type='text' value='${student/notice}'/>
      </td>
     </tr>
     <tr>
@@ -449,15 +438,7 @@
       <b>註　　記</b>
      </td>
      <td colspan="9">
-      
-     </td>
-    </tr>
-    <tr>
-     <td class='td-title'>
-      <b>備　　註</b>
-     </td>
-     <td colspan="9">
-      
+       <input name='memo' type='text' value='${student/memo}'/>
      </td>
     </tr>
     <tr class="tr-head">

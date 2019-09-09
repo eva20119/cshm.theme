@@ -133,6 +133,8 @@ portal_url = portal.absolute_url()
 <a id="material_view" target="_blank" href="@@material_view">教材</a>｜
 <a id="receipt_list" target="_blank" href="@@receipt_list">收據</a>｜
 <a id="search_receipt" target="_blank" href="@@search_receipt?action=title">收據查詢</a>｜
+<a id="admin_receipt_list" target="_blank" href="@@admin_receipt_list">收據審核</a>｜
+
 <br>
 <span class="gernal_report">成績追蹤</span>
 ( <a id="grade_manage" href="@@grade_manage">一般/操作類</a> /
@@ -144,7 +146,9 @@ portal_url = portal.absolute_url()
     <a class="to-url" href="javascript:void(0)" style='margin-left: 10px'>匯出至下載專區</a>
 </div>
 <hr>
-<h3>總人數：${view/view/numberCount}  (已繳費：${view/view/count}人，金額：${view/view/totalMoney})
+<h3>總人數：${view/view/numberCount}  (已繳費：${python: view.view.count['pay']}人，金額：${view/view/totalMoney})
+(審查中：${python: view.view.count['waiting']}人, 已撤銷：${python: view.view.count['is_cancel']}人)
+</h3>
 <form method="post" action="${context/absolute_url}/@@reserve_seat">
     <table>
       <tr>
