@@ -29,9 +29,10 @@ td{
 </select>
 流水號：<input id='docSN' type='text'>
 
-<button class='context' id='search'>Search</button>
+<button class='context' id='search'>查詢</button>
+<button class='context' onclick="location.reload()">清空搜尋紀錄</button>
 
-<a href="${portal_url}/@@create_official_view" class="pull-right">新建公文</a>
+<button class='context pull-right' onclick="location.href='${portal_url}/@@create_official_view'">新建公文</button>
 
 <br><br>
 <div id='result'>
@@ -45,7 +46,7 @@ portal = api.portal.get()
     <td>文號</td>
     <td>收件人</td>
     <td>日期</td>
-    <td>歸於課程期別</td>
+    <td>課程期別</td>
     <td></td>
   </tr>
   <tr tal:repeat="obj view/result" class="tr-body">

@@ -107,7 +107,7 @@ ${python:view.getPassCount(uid=item.UID())}
 ${item/licenseDate}
     </td>
     <td>
-${python:item.undertaker}
+${python:item.Creator()}
     </td>
     <td>
 ${item/trainingCenterAgent}
@@ -136,7 +136,7 @@ $(document).ready(function(){
     $.post(location.href, data=data)
       .done(function(res){
           if(res == 'err'){
-              alert('有資訊尚未填寫。\r請確認期別,報名截止日期,外辦單位,上課人數')
+              alert('有資訊尚未填寫。\r請確認\r期別\r報名截止日期\r上課人數')
           }else{
               alert('已變更發佈狀態')
               location.reload()

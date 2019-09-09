@@ -16,31 +16,14 @@ from datetime import datetime
 now = datetime.now().strftime('%Y-%m-%d')
 ?>
 <style>
-/*textarea{
-    min-height: unset;
-    height: unset;
-}
-td{
-    vertical-align: middle !important;
-}
-ul{
-    list-style: none;
-}
-a{
-    border: none !important;
-    text-decoration: none !important;
-}
-.sample_list{
-    font-size: 18px;
-    padding: 5px;
-}
-.sample_list li{
-    cursor: pointer;
-}
-.sample_list a{
+.signature_sample a{
     float: right;
 }
-*/
+.signature_sample li{
+    padding: 3px;
+    cursor: pointer;
+    font-size: 17px; 
+}
 </style>
 
 <div class='col-md-3 signature_sample'>

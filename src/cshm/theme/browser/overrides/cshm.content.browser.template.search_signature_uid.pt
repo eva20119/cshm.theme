@@ -37,7 +37,7 @@ td{
         <td>${python: item[1]}</td>
         <td>${python: item[13]}</td>
         <td>
-          <a href='${view/context/absolute_url}/modify_signature?id=${python: item[0]}'>修改</a>
+          <a href='${view/context/absolute_url}/modify_signature?id=${python: item[0]}&fromURL=${view/context/absolute_url}/quotation_list'>修改</a>
         </td>
     </tr>
 </table>

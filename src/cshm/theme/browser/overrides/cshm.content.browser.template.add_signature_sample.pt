@@ -120,13 +120,14 @@ a{
     </tr>
     <tr>
         <td colspan='2' style='text-align: center'>
-          <button>送出</button>
+          <input type='hidden' name='fromURL' value='${view/fromURL}'/>
+          <button class='context'>送出</button>
         </td>
     </tr>
 </table>
 </form>
 <div style='text-align:center;margin-top: 20px' class='col-md-12'>
-  <button id='back' onclick="location.href='${portal_url}/signature_view'">回上一頁</button>
+  <button id='back' onclick="location.href='${portal_url}/signature_view'" class='context'>回上一頁</button>
 </div>
 
 

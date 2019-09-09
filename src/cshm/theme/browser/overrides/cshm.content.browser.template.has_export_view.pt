@@ -47,9 +47,8 @@ table{
       <td>聯絡狀況</td>
       <td>上課狀況</td>
       <td>繳費狀況</td>
-      <td>折扣</td>
+      <td>折抵</td>
       <td>發Mail</td>
-      <td>刪除</td>
       <td>轉出</td>
       <td>收據輔助</td>
       <td>轉介</td>
@@ -60,18 +59,27 @@ table{
         <td tal:content="structure python: '%s<br>%s' %(obj['name'], obj['studId'])"></td>
         <td>${python: view.adYear2Tw(obj['apply_time'].strftime('%Y/%m/%d'))}</td>
         <td>${python: obj.get('contactLog')}</td>
-        <td>${python: ''}</td>
-        <td>${python: '繳費狀況'}</td>
+        <td>
+          <select class='attendStatus' data-id='${obj/id}'>
+            <option value=''></option>
+            <option value='確定上課' tal:attributes="selected python: obj['attendStatus'] == '確定上課'">確定上課</option>
+            <option value='考慮中' tal:attributes="selected python: obj['attendStatus'] == '考慮中'">考慮中</option>
+            <option value='延期' tal:attributes="selected python: obj['attendStatus'] == '延期'">延期</option>
+            <option value='取消報名' tal:attributes="selected python: obj['attendStatus'] == '取消報名'">取消報名</option>
+          </select>
+        </td>
+        <td>${python: view.getReceipt(obj['id'])}</td>
         <td>${python: obj['training_hour']}</td>
-        <td>${python: 'send mail'}</td>
-        <td>${python: ''}</td>
+        <td>
+          <a href="mailto: ${python: obj['com_email']}">send mail</a>
+        </td>
         <td>
             <form method='post'>
                 <select name='updateUid'>
                     <option tal:repeat="period view/periodList" value='${period/uid}'>${period/title}</option>
                 </select>
                 <input type='hidden' value="${obj/id}" name='updateId'/>
-                <input type='submit' value="送出">
+                <input type='submit' value="送出" class='context'>
             </form>
         </td>
         <td>${python: ''}</td>
@@ -79,6 +87,25 @@ table{
       </tal:define>
     </tr>
   </table>
+
+<script>
+$(function(){
+    $('.attendStatus').change(function(){
+        id = $(this).data()['id']
+        val = $(this).val()
+        $.ajax({
+            url: '${view/context/absolute_url}/has_export_view',
+            data: {id: id, val: val, updateAttendStatus: 1},
+            success: function(rep){
+                if(rep == 'error'){
+                    alert('更新上課狀態失敗, 請再試一次')
+                }
+            }
+        })
+    })
+})
+</script>
+
 </metal:content-core>
 </metal:content-core>
 

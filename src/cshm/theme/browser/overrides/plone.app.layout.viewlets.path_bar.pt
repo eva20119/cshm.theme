@@ -93,6 +93,7 @@ portal_url = portal.absolute_url()
       <a target="_blank" href="${context/absolute_url}/@@students_list">名單</a> |
       <a target="_blank" href="${context/absolute_url}/@@class_scheduling">排課</a> |
       <a traget='_blank' href="${context/absolute_url}/@@add_signature?fromURL=${context/absolute_url}/register_detail">新增簽呈</a> |
+      <a traget='_blank' href="${context/absolute_url}/@@add_signature_sample?fromURL=${context/absolute_url}/register_detail">新增簽呈範本</a> |
       <a traget='_blank' href="${context/absolute_url}/@@create_official_view?fromURL=${view/context/absolute_url}/register_detail">
          新增公文</a>
       <hr>

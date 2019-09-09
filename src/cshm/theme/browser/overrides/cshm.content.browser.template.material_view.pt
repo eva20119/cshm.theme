@@ -100,7 +100,7 @@ a{
          style='color: white;border: none;text-decoration: none;padding: 9px 10px;background: #545b62;border-radius: 8px'>套印教材單</a></li>
   <li><a href="${portal_url}/period_listing" style='color: white'>回到期別教材總表</a></li>
   <li><a href="${portal_url}/resource/material_folder/material_listing" target='_blank' style='color: white'>教材價目表</a></li>
-<ul>
+</ul>
 
 <div class='container'>
 	<div id='all'>
@@ -120,7 +120,7 @@ a{
 	      <tr tal:repeat="order view/orderList" class="${python: order[5]}">
 		<td>${repeat/order/number}</td>
 		<td>
-                  ${python: order[0]}
+                  <span>${python: order[0]}</span>
                   <select class='hide'>
                     <option value='尚未處理' tal:attributes="selected python: order[0] == '尚未處理'">尚未處理</option>
                     <option value='出貨中' tal:attributes="selected python: order[0] == '出貨中'">出貨中</option>
@@ -129,7 +129,7 @@ a{
 		<td>${python: order[1]}</td>
 		<td>${python: order[4]}</td>
 		<td>
-                  <p>${python: order[3]}</p>
+                  <span>${python: order[3]}</span>
                   <input type='text' value='${python: order[3]}' class='hide'/>
                 </td>
 		<td>

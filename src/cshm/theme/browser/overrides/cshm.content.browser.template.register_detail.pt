@@ -112,7 +112,7 @@ input.edit, select.edit, p.edit, #send, #cancel_edit, textarea.edit, #materialAr
        <input  type='text' class='edit' name='classTime' value='${context/classTime}' placeholder='例:0900-1800'>
      </td>
      <td class="td-title">
-      <b style='color: red'>
+      <b>
        外辦單位
       </b>
      </td>

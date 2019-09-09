@@ -67,7 +67,7 @@ cancel{
         <td>${python: obj['money']}</td>
         <td>${python: obj['undertaker']}</td>
         <td>
-          <span tal:condition="python: obj['is_cancel'] == 1" style='color: white'>已撤銷</span>
+          <span tal:condition="python: obj['is_cancel'] == 1" style='color: red'>已撤銷</span>
           <span tal:condition="python: obj['one_check'] == 0 and obj['is_cancel'] == 0" style='color: red'>未審核</span>
           <span tal:condition="python: obj['one_check'] == 1 and obj['is_cancel'] == 0  and obj['two_check'] == 0" style='color: blue'>
             已通過第一次審核</span>
@@ -76,13 +76,14 @@ cancel{
         </td>
         <td>
           <tal:cond condition="python: obj['is_cancel'] == 0 and obj['one_check'] == 0">
-            <a href="${contextURL}/@@pass_receipt?receipt_id=${python: obj['id']}&time=one" class='pass_btn'>第一次通過</a>
+            <button onclick="location.href='${contextURL}/@@pass_receipt?receipt_id=${python: obj['id']}&time=one'" class='context'>
+              第一次通過</button>
           </tal:cond>
           <tal:cond condition="python: obj['is_cancel'] == 0 and obj['one_check'] == 1 and obj['two_check'] != 1">
-            <a href="${contextURL}/@@pass_receipt?receipt_id=${python: obj['id']}&time=two" class='pass_btn'>第二次通過</a>
+            <button onclick="location.href='${contextURL}/@@pass_receipt?receipt_id=${python: obj['id']}&time=two'" class='context'>    
+              第二次通過</button>
           </tal:cond>
-
-          <a href="${contextURL}/@@cancel_receipt?receipt_id=${python: obj['id']}" class="cancel_btn">撤銷收據</a>          
+          <button class='destructive cancel_btn' data-id='${obj/id}'>撤銷收據</button>
         </td>
         <td>
             <a href="${contextURL}/@@receipt_detail?receipt_id=${python: obj['id']}">檢視</a>
@@ -98,7 +99,12 @@ cancel{
 
 <script>
 $(function(){
-
+    $('.cancel_btn').click(function(e){
+        if(confirm('確認要撤銷嘛?')){
+            id = $(this).data()['id']
+            location.href='${view/context/absolute_url}/@@cancel_receipt?receipt_id=' + id
+        }
+    })
 })
 </script>
 

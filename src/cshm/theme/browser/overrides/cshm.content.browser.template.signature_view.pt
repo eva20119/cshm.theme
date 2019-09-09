@@ -27,7 +27,8 @@ a{
 
 
 <button onclick="location.href='${portal_url}/search_signature_view'" class='context'>簽呈查詢</button>
-<button onclick="location.href='${portal_url}/add_signature_sample'" class='context'>新增範本</button>
+<button onclick="location.href='${portal_url}/signature_view?status=尚未核准'" class='context'>尚未核准</button>
+<button onclick="location.href='${portal_url}/signature_view?status=已核准'" class='context'>已核准</button>
 <br><br>
 
 <table>
